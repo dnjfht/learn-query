@@ -12,14 +12,21 @@ export default function Products() {
     isLoading,
     error,
     data: products,
-  } = useQuery(["products", checked], async () => {
-    // check가 되었는지 안되었는지에 따라서 다른 데이터 받아오기
-    // 값이 변경될 때마다 새롭게 fetch를 해야 한다면 항상 key 배열에 명시를 해줘야 한다.
-    console.log("fetching...");
-    return fetch(`data/${checked ? "sale_" : ""}products.json`).then((res) =>
-      res.json()
-    );
-  });
+  } = useQuery(
+    ["products", checked],
+    async () => {
+      // check가 되었는지 안되었는지에 따라서 다른 데이터 받아오기
+      // 값이 변경될 때마다 새롭게 fetch를 해야 한다면 항상 key 배열에 명시를 해줘야 한다.
+      console.log("fetching...");
+      return fetch(`data/${checked ? "sale_" : ""}products.json`).then((res) =>
+        res.json()
+      );
+    },
+    {
+      staleTime: 1000 * 60 * 5,
+      // 5분 정도는 데이터를 계속 캐쉬하고 싶다면
+    }
+  );
   // useQuery를 호출하면 어떤 객체를 return해 주는데, 객체 안에는 다양한 key들이 있다.
   // const {data,dataUpdatedAt, error, errorUpdatedAt, failureCount, isError, isFetched, isFetchedAfterMount, isFetching, isIdle, isLoading, isLoadingError, isPlaceholderData, isPreviousData, isRefetchError, isRefetching, isStale, isSuccess, refetch, remove, status,}
   // useQuery에 queryKey와 어떻게, 어디서 데이터를 읽어와야 하는지 query함수를 전달해줘야 한다.
