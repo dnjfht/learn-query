@@ -24,7 +24,8 @@ export default function Products() {
     },
     {
       staleTime: 1000 * 60 * 5,
-      // 5분 정도는 데이터를 계속 캐쉬하고 싶다면
+      // 5분 정도는 데이터를 계속 캐쉬하고 싶다면?
+      // 다시는 fatching이 안됨
     }
   );
   // useQuery를 호출하면 어떤 객체를 return해 주는데, 객체 안에는 다양한 key들이 있다.
