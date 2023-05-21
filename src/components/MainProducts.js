@@ -27,7 +27,9 @@ export default function MainProducts() {
       </div>
       <button
         onClick={() => {
-          client.invalidateQueries();
+          client.invalidateQueries(["products", false]);
+          // cach key는 products, false만 invalidate해달라고 명령.(data를 업데이트)
+          // button을 누르는 순간 caching이 일어나면서 데이터가 업데이트 된다.
         }}
       >
         정보가 업데이트 되었음!

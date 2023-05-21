@@ -17,7 +17,7 @@ export default function Products() {
     async () => {
       // check가 되었는지 안되었는지에 따라서 다른 데이터 받아오기
       // 값이 변경될 때마다 새롭게 fetch를 해야 한다면 항상 key 배열에 명시를 해줘야 한다.
-      console.log("fetching...");
+      console.log("fetching...", checked);
       return fetch(`data/${checked ? "sale_" : ""}products.json`).then((res) =>
         res.json()
       );
